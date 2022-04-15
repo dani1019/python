@@ -1,8 +1,9 @@
 import random
 import hangman_print
 import hangman_words
-import hangman_art 
+import hangman_art
 
+#一つの単語を表示させるための処理
 def print_word():
     #hangman_words[list]から一つの単語を選ぶ
     #return one word[string]
@@ -21,9 +22,11 @@ def print_word():
     #changes_word[list]をstringに変換し画面に表示する
     change_word_str = ' '
     word = change_word_str.join(changes_word)
-    print(word)
-    
-    
+    return word, hangman_word
 
-
-#def print_art()
+def enter_word(complete_word,incomplete_word,enter_letter):
+    #画面上で入力した文字が表示された単語の何番目と一致するか確認する
+    complete_word_length= len(complete_word) -1
+    if enter_letter in complete_word:
+        for index in range(0,complete_word_length):
+            print(index)
