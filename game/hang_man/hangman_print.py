@@ -1,5 +1,4 @@
 import random
-import hangman_print
 import hangman_words
 import hangman_art
 
@@ -18,15 +17,18 @@ def print_word():
         for change_letter in change_letters:
             if letter == change_letter:
                 letter = '_'
-        changes_word.append(letter)   
+        changes_word.append(letter) 
     #changes_word[list]をstringに変換し画面に表示する
     change_word_str = ' '
     word = change_word_str.join(changes_word)
     return word, hangman_word
 
-def enter_word(complete_word,incomplete_word,enter_letter):
+def enter_letter(complete_word,incomplete_word,enter_letter):
+    be_complete_word = []
+    print(type(incomplete_word))
     #画面上で入力した文字が表示された単語の何番目と一致するか確認する
-    complete_word_length= len(complete_word) -1
-    if enter_letter in complete_word:
-        for index in range(0,complete_word_length):
-            print(index)
+    #complete_wordをリストに変換する
+    complete_word_letter = complete_word.split()
+    complete_word_length = len(complete_word_letter)- 1
+    for index  in range(complete_word_length):
+        print(complete_word_letter[index])
