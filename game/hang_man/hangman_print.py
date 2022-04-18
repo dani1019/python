@@ -9,6 +9,7 @@ def print_word():
     hangman_word = random.choice(hangman_words.word_list)
     #選ばれた単語 Stringをlistに変換し3つの文字を選ぶ
     #return three characters[list]
+    # テスト用 hangman_word = 'apple'
     change_letters = random.sample(list(hangman_word),3)
     #one word[string]からrandomで3つのcharacterを選び'_'に変換する
     #変換された結果は、changes_word[list]に入れる
@@ -24,11 +25,25 @@ def print_word():
     return word, hangman_word
 
 def enter_letter(complete_word,incomplete_word,enter_letter):
-    be_complete_word = []
+    print(complete_word)
+    print(type(complete_word))
+    print(incomplete_word)
     print(type(incomplete_word))
-    #画面上で入力した文字が表示された単語の何番目と一致するか確認する
-    #complete_wordをリストに変換する
-    complete_word_letter = complete_word.split()
-    complete_word_length = len(complete_word_letter)- 1
-    for index  in range(complete_word_length):
-        print(complete_word_letter[index])
+    print(enter_letter)
+    print(type(enter_letter))
+    #입력받은 enter_letter을 전부 소문자로 만듦
+    enter_letter_lower = enter_letter.lower()
+    print(enter_letter_lower)
+    #제시했던 단어의 형식을 str -> list로 변환
+    complete_word_letter =list(complete_word)
+    #enter_letter_lower가 complete_word 있는지 확인
+    #return true or false
+    if enter_letter_lower in complete_word:
+        print("存在する")
+        print(complete_word.index(enter_letter_lower))
+    else:
+        print("存在しない")
+
+    #입력받은 enter_letter가 complete_word 몇 번째에 있는지 확인
+    #enter_letter가 복수로 들어가있을 때는 어떻게 해야할까
+    #incomplete_word[complete_word 몇 번째] enter_letter를 넣는다.
