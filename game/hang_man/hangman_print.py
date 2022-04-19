@@ -9,7 +9,7 @@ def print_word():
     hangman_word = random.choice(hangman_words.word_list)
     #選ばれた単語 Stringをlistに変換し3つの文字を選ぶ
     #return three characters[list]
-    # テスト用 hangman_word = 'apple'
+    hangman_word = 'apple'
     change_letters = random.sample(list(hangman_word),3)
     #one word[string]からrandomで3つのcharacterを選び'_'に変換する
     #変換された結果は、changes_word[list]に入れる
@@ -26,24 +26,30 @@ def print_word():
 
 def enter_letter(complete_word,incomplete_word,enter_letter):
     print(complete_word)
-    print(type(complete_word))
     print(incomplete_word)
-    print(type(incomplete_word))
     print(enter_letter)
-    print(type(enter_letter))
     #입력받은 enter_letter을 전부 소문자로 만듦
     enter_letter_lower = enter_letter.lower()
     print(enter_letter_lower)
+    print()
     #제시했던 단어의 형식을 str -> list로 변환
     complete_word_letter =list(complete_word)
-    #enter_letter_lower가 complete_word 있는지 확인
-    #return true or false
-    if enter_letter_lower in complete_word:
-        print("存在する")
-        print(complete_word.index(enter_letter_lower))
-    else:
-        print("存在しない")
+    #complete_word_letter에 enter_letter가 어느 index에 확인할 수 있는 리스트 작성
 
-    #입력받은 enter_letter가 complete_word 몇 번째에 있는지 확인
-    #enter_letter가 복수로 들어가있을 때는 어떻게 해야할까
-    #incomplete_word[complete_word 몇 번째] enter_letter를 넣는다.
+    #완성된 단어에, 입력받은 문자가 있는지 체크해서, 리스트에 넣는 처리를 만들었다.
+    #일치하는 문자에 대해 dict{index,enter_letter} 형태로 list로 저장함
+    #{0: 'a', 1: 'a', 2: 'a', 3: 'a', 4: 'a'}
+    #버그 입력받은 문자가 완성된 단어가 있으면,  dict{index,enter_letter} 에 들어가게된.
+    #완성된 단어 한 글자 한글자씩 for문을 돌려서 일치하는가 확인하고, 
+    #일치하는 조건에서만  dict{index,enter_letter} 형태의 리스트에 넣는 것으로
+    index_list = []
+    index_dict = {}
+    for index, letter_element in enumerate(complete_word_letter):
+        if enter_letter_lower in complete_word:
+            index_dict[index] = enter_letter_lower
+            index_list.append(index_dict)
+        else:
+            print("存在しない")
+    
+    for index_element in index_list:
+        print(index_element)
