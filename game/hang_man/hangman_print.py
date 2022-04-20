@@ -25,13 +25,8 @@ def print_word():
     return word, hangman_word
 
 def enter_letter(complete_word,incomplete_word,enter_letter):
-    print(complete_word)
-    print(incomplete_word)
-    print(enter_letter)
     #입력받은 enter_letter을 전부 소문자로 만듦
     enter_letter_lower = enter_letter.lower()
-    print(enter_letter_lower)
-    print()
     #제시했던 단어의 형식을 str -> list로 변환
     complete_word_letter =list(complete_word)
     #complete_word_letter에 enter_letter가 어느 index에 확인할 수 있는 리스트 작성
@@ -42,14 +37,17 @@ def enter_letter(complete_word,incomplete_word,enter_letter):
     #버그 입력받은 문자가 완성된 단어가 있으면,  dict{index,enter_letter} 에 들어가게된.
     #완성된 단어 한 글자 한글자씩 for문을 돌려서 일치하는가 확인하고, 
     #일치하는 조건에서만  dict{index,enter_letter} 형태의 리스트에 넣는 것으로
-    index_list = []
     index_dict = {}
     for index, letter_element in enumerate(complete_word_letter):
-        if enter_letter_lower in complete_word:
+        if enter_letter_lower == letter_element:
             index_dict[index] = enter_letter_lower
-            index_list.append(index_dict)
-        else:
-            print("存在しない")
     
-    for index_element in index_list:
-        print(index_element)
+    #incomplete_word_len list length
+    incomplete_word_letter = incomplete_word.split()
+    incomplete_word_len = len(incomplete_word_letter) - 1
+    for i in range(0,incomplete_word_len):
+        for index, value in index_dict.items():
+            incomplete_word_letter[index] = value
+    
+    letter_entered_word = ''.join(incomplete_word_letter)
+    return letter_entered_word
