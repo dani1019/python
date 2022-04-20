@@ -39,15 +39,36 @@ def enter_letter(complete_word,incomplete_word,enter_letter):
     #일치하는 조건에서만  dict{index,enter_letter} 형태의 리스트에 넣는 것으로
     index_dict = {}
     for index, letter_element in enumerate(complete_word_letter):
-        if enter_letter_lower == letter_element:
+            print("enter_letter_lower: " + enter_letter_lower)
+            print()
             index_dict[index] = enter_letter_lower
     
+    for i,v in index_dict.items():
+        print(i,v)
+    entered_incomplete_word = []
+
     #incomplete_word_len list length
-    incomplete_word_letter = incomplete_word.split()
-    incomplete_word_len = len(incomplete_word_letter) - 1
-    for i in range(0,incomplete_word_len):
-        for index, value in index_dict.items():
-            incomplete_word_letter[index] = value
+    incomplete_letter_list = incomplete_word.split()
+    incomplete_letter_list_len = len(incomplete_letter_list) - 1
+
+    for incomplete_letter_list_index in range(incomplete_letter_list_len):
+        entered_incomplete_word[entered_incomplete_word]
+        for dic_index, value in index_dict.items():
+            if incomplete_letter_list_index == dic_index:
+                incomplete_word_letter[index] = value
+                
+    #'incomplete_word_letter'
+    # for i in range(0,incomplete_word_len):
+    #     for index, value in index_dict.items():
+    #         incomplete_word_letter[index] = value
+    #         print(f'incomplete_word_letter:" + {i} + "番目: " + {incomplete_word_letter[i]}')
     
+
+    print()
+    for letter in incomplete_word_letter:
+        print("letter: "+ letter)
+
     letter_entered_word = ''.join(incomplete_word_letter)
+    print("letter_entered_word:" + letter_entered_word)
+    
     return letter_entered_word
