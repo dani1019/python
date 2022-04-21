@@ -10,13 +10,13 @@ print(word)
 
 #첫번째 문자를 입력한 후, '_'가 채워진 결과 출력
 enter_letter = input("Guess a letter: ")
-first_result= hangman_print.enter_letter(hang_word,word,enter_letter)
-print("first_result: " + first_result)
+hangman_print.enter_letter(hang_word,word,enter_letter)
+#print("first_result: " + first_result)
 
-#두 번째 문자를 입력한 후, '_'가 채워진 결과 출력
-enter_letter_2 = input("Guess a letter: ")
-result = hangman_print.enter_letter(hang_word,first_result,enter_letter_2)
-print("result: " + result)
+# #두 번째 문자를 입력한 후, '_'가 채워진 결과 출력
+# enter_letter_2 = input("Guess a letter: ")
+# result = hangman_print.enter_letter(hang_word,first_result,enter_letter_2)
+# print("result: " + result)
 
 #enter_letter = input("Guess a letter: ")
 
