@@ -28,14 +28,22 @@ def print_word():
     return word, hangman_word
 
 def enter_letter(complete_word,incomplete_word,enter_letter):
+    print(incomplete_word)
+    print(type(incomplete_word))
     #입력받은 enter_letter을 전부 소문자로 만듦
     enter_letter_lower = enter_letter.lower()
     #제시했던 단어의 형식을 str -> list로 변환
-    complete_word_list =complete_word.split()
-    incomplete_word_list = incomplete_word.split()
+    complete_word_list =list(complete_word)
+    #incomplete_word_list = incomplete_word.split()
+    incomplete_word_list = list(incomplete_word.replace(" ", ""))
 
-    for word in complete_word:
-        print(f'complete_word: {word}')
+    for index,element in enumerate(complete_word_list):
+        print(f"complete_word_list: & {index} , {element}")
+
+    print()
+    for index,element in enumerate(incomplete_word_list):
+        print(f"incomplete_word_list: & {index} , {element}")
+
     #complete_word_letter에 enter_letter가 어느 index에 확인할 수 있는 리스트 작성
 
     #완성된 단어에, 입력받은 문자가 있는지 체크해서, 리스트에 넣는 처리를 만들었다.
@@ -44,48 +52,26 @@ def enter_letter(complete_word,incomplete_word,enter_letter):
     #버그 입력받은 문자가 완성된 단어가 있으면,  dict{index,enter_letter} 에 들어가게된.
     #완성된 단어 한 글자 한글자씩 for문을 돌려서 일치하는가 확인하고, 
     #일치하는 조건에서만  dict{index,enter_letter} 형태의 리스트에 넣는 것으로
-    # index_dict = {}
-    # for index, letter in enumerate(complete_word_list):
-    #         if letter == enter_letter_lower:
-    #             print("a")
-    #             print("enter_letter_lower: " + enter_letter_lower)
-    #             print()
-    #             index_dict[index] = enter_letter_lower
-    
-    # for i,v in index_dict.items():
-    #     print(i,v)
-    #     print()
-
-    # #incomplete_word_list 4글자인데, 8자로 출력이 되는 이유는?
-    # for index,element in incomplete_word_list:
-    #     print(index,element)
-    #     print()
+    index_dict = {}
+    for index, letter in enumerate(complete_word_list):
+            if letter == enter_letter_lower:
+                print("enter_letter_lower: " + enter_letter_lower)
+                index_dict[index] = enter_letter_lower
+    print()
+    for index, value in index_dict.items():
+        print(f"index_dict: {index}, {value}")
     
     #dic_index하고 incomplete_word_list index가 같다면 incomplete_word_list에 dic_letter을 넣기
-    # for index, letter in enumerate(incomplete_word_list):
-    #     for dic_index, dic_letter in index_dict.items():
-    #         if index == dic_index:
-    #             incomplete_word_list[dic_index] = dic_letter
-    #         else:
-    #             print(index)
-    #             print()
+    for index, letter in enumerate(incomplete_word_list):
+        for dic_index, dic_letter in index_dict.items():
+            if index == dic_index:
+                incomplete_word_list[dic_index] = dic_letter
     
-    # for index,element in enumerate(incomplete_word_list):
-    #     print(index , element)
+    print()
+    for index,element in enumerate(incomplete_word_list):
+        print(f"entered_incomplete_word_list: & {index} , {element}")
 
-                
-    #'incomplete_word_letter'
-    # for i in range(0,incomplete_word_len):
-    #     for index, value in index_dict.items():
-    #         incomplete_word_letter[index] = value
-    #         print(f'incomplete_word_letter:" + {i} + "番目: " + {incomplete_word_letter[i]}')
-    
+    letter_entered_word = ''.join(incomplete_word_list)
+    print("letter_entered_word:" + letter_entered_word)
 
-    # print()
-    # for letter in incomplete_word_letter:
-    #     print("letter: "+ letter)
-
-    # letter_entered_word = ''.join(incomplete_word_letter)
-    # print("letter_entered_word:" + letter_entered_word)
-    
-    # return letter_entered_word
+    return letter_entered_word
