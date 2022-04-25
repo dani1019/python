@@ -1,22 +1,30 @@
 import random
-import hangman_words
-import hangman_art
+import words_data
+
+def play_loop():
+    print("You guessed a , that's not in the word .You lose  a life")
+    display_word, selected_word= print_word()
+    print(display_word)
+
+    enter_letter = input("Guess a letter: ")
+    first_result = enter_letter(selected_word,display_word,enter_letter)
+    print(f"first_result: {first_result}")
 
 #一つの単語を表示させるための処理
 def print_word():
     #hangman_words[list]から一つの単語を選ぶ
     #return one word[string]
-    hangman_word = random.choice(hangman_words.word_list)
+    display_word = random.choice(words_data.word_list)
     #選ばれた単語 Stringをlistに変換し3つの文字を選ぶ
     #return three characters[list]
-    hangman_word = 'apple'
-    change_letters = random.sample(list(hangman_word),3)
+    display_word = 'apple'
+    change_letters = random.sample(list(display_word),3)
 
     #one word[string]からrandomで3つのcharacterを選び'_'に変換する
     #変換された結果は、changes_word[list]に入れる
     changes_word = []
-    print(f'hangman_word: {hangman_word}')
-    for letter in list(hangman_word):
+    print(f'display_word: {display_word}')
+    for letter in list(display_word):
         for change_letter in change_letters:
             if letter == change_letter:
                 letter = '_'
@@ -25,11 +33,11 @@ def print_word():
     #changes_word[list]をstringに変換し画面に表示する
     change_word_str = ' '
     word = change_word_str.join(changes_word)
-    return word, hangman_word
+    return word, display_word
 
 def enter_letter(complete_word,incomplete_word,enter_letter):
-    print(incomplete_word)
-    print(type(incomplete_word))
+    #print(incomplete_word)
+    #print(type(incomplete_word))
     #입력받은 enter_letter을 전부 소문자로 만듦
     enter_letter_lower = enter_letter.lower()
     #제시했던 단어의 형식을 str -> list로 변환
