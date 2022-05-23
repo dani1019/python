@@ -1,17 +1,22 @@
 import art
 import compare_list
-from random import randint
+from random import choice
+
+selected_two_compare_list = []
 
 #ゲームStart!
 def start_game():
     print(art.logo)
     print_compare_list()
 
-
 def print_compare_list():
-    #famous_listのindexをランダムに選択できるようにする
-    length_compare_list= len(compare_list.famous_list) - 1
-    random_index = randint(0,length_compare_list)
+    select_two_compare()
+    print(list(selected_two_compare_list))
+    for one in selected_two_compare_list:
+        print(one)
 
-    #famous_listの要素をランダムに選択し画面に表示させる
-    print(f"compare_A: {compare_list.famous_list[random_index]}")
+def select_two_compare():
+    global selected_two_compare_list
+    for i in range(2):
+        selected_two_compare_list = choice(compare_list.famous_list)
+
